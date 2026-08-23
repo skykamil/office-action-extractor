@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Office Action Extractor</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 40px;
+        }
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #666565;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        button {
+            padding: 8px 16px;
+            font-size: 16px;
+        }
+        input[type="file"] {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<input type="file" multiple id="fileInput">
+<button id="uploadBtn">Upload</button>
+<button id="showFilesBtn">Show uploaded files</button>
+<table id="filesTable" style="display: none;">
+    <tr>
+        <th>file_type</th>
+        <th>application_number</th>
+        <th>file_date</th>
+        <th>oa_start_date</th>
+        <th>due_date</th>
+        <th>processed_at</th>
+    </tr>
+    <tbody id="filesBody"></tbody>
+</table>
+<script>
+    document.getElementById("uploadBtn").addEventListener("click", function() {
+        const formData = new FormData();
+        const fileInput = document.getElementById("fileInput");
+        const files = fileInput.files;
+        for (const file of files) {
+            formData.append("files", file);
+        }
+        fetch("/upload", {
+            method: "POST",
+            body: formData
+        })
+    })
+    document.getElementById("showFilesBtn").addEventListener("click", async function(){
+        if (document.getElementById("filesTable").style.display == "none") {
+            const response = await fetch("/files");
+            const data = await response.json();
+            document.getElementById("filesBody").innerHTML = "";
+            for (const record of data) {
+                const row = document.createElement("tr");
+                row.innerHTML = `<td>${record[1]}</td><td>${record[2]}</td><td>${record[3]}</td><td>${record[4]}</td><td>${record[5]}</td><td>${record[6]}</td>`;
+                document.getElementById("filesBody").appendChild(row);
+            }
+            document.getElementById("filesTable").style.display = "table";
+        } else {
+            document.getElementById("filesTable").style.display = "none";
+        }
+    })
+</script>
+</body>
+</html>
