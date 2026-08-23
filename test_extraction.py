@@ -26,5 +26,5 @@ The response is due on October 21, 2026."""
     assert find_dates(text_us) == ('August 4, 2026', 'July 21, 2026', 'October 21, 2026')
 
 def test_extract_text():
-    letter_path = Path(__file__).parent / "letter1.pdf"
+    letter_path = Path(__file__).parent / "samples" / "letter1.pdf"
     assert "3,215,487" in extract_text(letter_path)
