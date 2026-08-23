@@ -78,6 +78,10 @@ Upload one or more PDF Office Action letters through the web interface, or via t
 pytest -v
 ```
 
+## Sample Documents
+
+The included `letter1.pdf`, `letter2.pdf`, and `letter3.pdf` are synthetic documents generated for demonstration and testing purposes only — they do not represent real Office Actions and contain no data from actual cases or clients.
+
 ## Limitations
 
 - PDF only — no DOCX or scanned/OCR support
