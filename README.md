@@ -1,5 +1,7 @@
 # Office Action Extractor
 
+[![Python application](https://github.com/skykamil/office-action-extractor/actions/workflows/python-app.yml/badge.svg)](https://github.com/skykamil/office-action-extractor/actions/workflows/python-app.yml)
+
 A tool for automatically extracting key data (letter type, application number, key dates) from patent Office Action letters (PDF) and storing them in a database, with a simple web interface for uploading files and reviewing results.
 
 ## Features
@@ -25,8 +27,8 @@ A tool for automatically extracting key data (letter type, application number, k
 
 1. Clone the repository:
    ```
-   git clone https://github.com/<your-username>/agent_letter_extractor.git
-   cd agent_letter_extractor
+   git clone https://github.com/skykamil/office-action-extractor.git
+   cd office-action-extractor
    ```
 2. Install dependencies:
    ```
