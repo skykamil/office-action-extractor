@@ -93,6 +93,10 @@ The three samples deliberately cover different jurisdictions and formats: USPTO 
 pytest -v
 ```
 
+## License
+
+MIT — see [LICENSE](LICENSE). This covers the code and the synthetic sample documents in `samples/`.
+
 ## Limitations
 
 - PDF only — no DOCX or scanned/OCR support
