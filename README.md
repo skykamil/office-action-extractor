@@ -12,7 +12,7 @@ A tool for automatically extracting key data (letter type, application number, k
 - Results stored in SQLite
 - Simple web interface (upload form + results table)
 - Custom exception hierarchy with clear, mapped HTTP error responses (unsupported format, corrupted file, missing file, empty document)
-- Uploaded files are sanitized against path traversal and deleted after processing — nothing is kept on disk beyond the request
+- Uploaded files are processed in isolated temporary directories and automatically removed after processing
 
 ## Requirements
 

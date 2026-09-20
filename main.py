@@ -1,4 +1,5 @@
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from fastapi.responses import JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI, UploadFile, Request
@@ -19,14 +20,13 @@ async def upload_files(files: list[UploadFile]):
             raise FileAccessError("File not selected")
         contents = await file.read()
         safe_filename = Path(file.filename).name
-        with open(safe_filename, "wb") as f:
-            f.write(contents)
-        try:
-            text = extract_text(safe_filename)
+        with TemporaryDirectory() as temp_dir:
+            temp_path = Path(temp_dir) / safe_filename
+            with open(temp_path, "wb") as f:
+                f.write(contents)
+            text = extract_text(temp_path)
             save_file(find_file_type(text), find_app_number(text), *find_dates(text))
             uploaded_files.append({"file_type": find_file_type(text), "application_number": find_app_number(text)})
-        finally:
-            Path(safe_filename).unlink(missing_ok=True)
     return uploaded_files
 
 @app.get("/files")
